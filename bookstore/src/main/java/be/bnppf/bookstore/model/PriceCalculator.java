@@ -9,42 +9,44 @@ public class PriceCalculator {
             return 0.0;
         }
 
-        // Compter les livres
-        Map<Book, Integer> bookCounts = basket.getBookCounts();
+        Map<Book, Integer> bookCounts = new HashMap<>(basket.getBookCounts());
+        List<Integer> groups = new ArrayList<>();
 
-        double totalPrice = 0.0;
-
-        // Tant qu'il reste des livres
+        // Construire les groupes de manière gloutonne
         while (!bookCounts.isEmpty()) {
-            // Former un groupe avec des livres différents
             int groupSize = 0;
             List<Book> toRemove = new ArrayList<>();
 
             for (Map.Entry<Book, Integer> entry : bookCounts.entrySet()) {
-                Book book = entry.getKey();
+                groupSize++;
                 int count = entry.getValue();
 
-                // Prendre un livre de ce type pour le groupe
-                groupSize++;
-
-                // Diminuer le compteur
                 if (count == 1) {
-                    toRemove.add(book);
+                    toRemove.add(entry.getKey());
                 } else {
-                    bookCounts.put(book, count - 1);
+                    bookCounts.put(entry.getKey(), count - 1);
                 }
             }
 
-            // Supprimer les livres épuisés
-            for (Book book : toRemove) {
-                bookCounts.remove(book);
-            }
-
-            // Calculer le prix de ce groupe
-            totalPrice += groupSize * 50.0 * getDiscount(groupSize);
+            toRemove.forEach(bookCounts::remove);
+            groups.add(groupSize);
         }
 
-        return totalPrice;
+        // Optimisation : transformer 5+3 en 4+4
+        while (groups.contains(5) && groups.contains(3)) {
+            groups.remove(Integer.valueOf(5));
+            groups.remove(Integer.valueOf(3));
+            groups.add(4);
+            groups.add(4);
+        }
+
+        // Calculer le prix total
+        double total = 0.0;
+        for (int size : groups) {
+            total += size * 50.0 * getDiscount(size);
+        }
+
+        return total;
     }
 
     private double getDiscount(int groupSize) {
