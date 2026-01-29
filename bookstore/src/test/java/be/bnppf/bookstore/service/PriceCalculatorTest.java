@@ -82,4 +82,21 @@ public class PriceCalculatorTest {
         // Then
         assertEquals(135.0, price); // 3 * 50 * 0.90 = 135
     }
+
+    @Test
+    public void fourDifferentBooks_shouldCost160() {
+        // Given
+        ShoppingBasket basket = new ShoppingBasket();
+        basket.add(Book.CLEAN_CODE);
+        basket.add(Book.THE_CLEAN_CODER);
+        basket.add(Book.CLEAN_ARCHITECTURE);
+        basket.add(Book.TEST_DRIVEN_DEVELOPMENT);
+        PriceCalculator calculator = new PriceCalculator();
+
+        // When
+        double price = calculator.calculate(basket);
+
+        // Then
+        assertEquals(160.0, price); // 4 * 50 * 0.80 = 160
+    }
 }
