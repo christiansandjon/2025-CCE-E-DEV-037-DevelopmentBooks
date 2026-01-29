@@ -1,5 +1,6 @@
 package be.bnppf.bookstore.service;
 
+import be.bnppf.bookstore.model.PriceCalculator;
 import be.bnppf.bookstore.model.ShoppingBasket;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
