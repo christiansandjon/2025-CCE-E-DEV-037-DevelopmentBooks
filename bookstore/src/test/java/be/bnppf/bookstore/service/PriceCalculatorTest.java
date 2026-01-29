@@ -1,8 +1,11 @@
 package be.bnppf.bookstore.service;
 
+import be.bnppf.bookstore.model.Book;
 import be.bnppf.bookstore.model.PriceCalculator;
 import be.bnppf.bookstore.model.ShoppingBasket;
 import org.junit.jupiter.api.Test;
+
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PriceCalculatorTest {
@@ -18,5 +21,34 @@ public class PriceCalculatorTest {
         
         // Then
         assertEquals(0.0, price);
+    }
+
+    @Test
+    public void oneBook_shouldCost50() {
+        // Given
+        ShoppingBasket basket = new ShoppingBasket();
+        basket.add(Book.CLEAN_CODE);
+        PriceCalculator calculator = new PriceCalculator();
+
+        // When
+        double price = calculator.calculate(basket);
+
+        // Then
+        assertEquals(50.0, price);
+    }
+
+    @Test
+    public void twoIdenticalBooks_shouldCost100() {
+        // Given
+        ShoppingBasket basket = new ShoppingBasket();
+        basket.add(Book.CLEAN_CODE);
+        basket.add(Book.CLEAN_CODE);
+        PriceCalculator calculator = new PriceCalculator();
+
+        // When
+        double price = calculator.calculate(basket);
+
+        // Then
+        assertEquals(100.0, price);
     }
 }
