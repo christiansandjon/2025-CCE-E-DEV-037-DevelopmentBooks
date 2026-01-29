@@ -117,4 +117,23 @@ public class PriceCalculatorTest {
         // Then
         assertEquals(187.5, price); // 5 * 50 * 0.75 = 187.5
     }
+
+    @Test
+    public void twoIdenticalPlusOneDifferent_shouldCost145() {
+        // Given
+        ShoppingBasket basket = new ShoppingBasket();
+        basket.add(Book.CLEAN_CODE);
+        basket.add(Book.CLEAN_CODE);
+        basket.add(Book.THE_CLEAN_CODER);
+        PriceCalculator calculator = new PriceCalculator();
+
+        // When
+        double price = calculator.calculate(basket);
+
+        // Then
+        // Groupe de 2 différents: 95
+        // 1 livre seul: 50
+        // Total: 145
+        assertEquals(145.0, price);
+    }
 }
