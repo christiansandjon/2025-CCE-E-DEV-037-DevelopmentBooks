@@ -6,32 +6,27 @@ public class PriceCalculator {
         int totalBooks = basket.size();
         int uniqueBooks = basket.countUniqueBooks();
 
-        // Si tous les livres sont identiques, pas de remise
+        // Si tous identiques, pas de remise
         if (uniqueBooks == 1) {
             return totalBooks * 50.0;
         }
 
-        // Si 2 livres différents, 5% de remise
-        if (uniqueBooks == 2 && totalBooks == 2) {
-            return 2 * 50.0 * 0.95;
-        }
-
-        // Si 3 livres différents, 10% de remise
-        if (uniqueBooks == 3 && totalBooks == 3) {
-            return 3 * 50.0 * 0.90;
-        }
-
-        // Si 4 livres différents, 20% de remise
-        if (uniqueBooks == 4 && totalBooks == 4) {
-            return 4 * 50.0 * 0.80;
-        }
-
-        // Si 5 livres différents, 25% de remise
-        if (uniqueBooks == 5 && totalBooks == 5) {
-            return 5 * 50.0 * 0.75;
+        // Si tous différents, appliquer la remise correspondante
+        if (uniqueBooks == totalBooks) {
+            return totalBooks * 50.0 * getDiscount(uniqueBooks);
         }
 
         // Par défaut, pas de remise
         return totalBooks * 50.0;
+    }
+
+    private double getDiscount(int uniqueBooks) {
+        switch (uniqueBooks) {
+            case 2: return 0.95;  // 5% remise
+            case 3: return 0.90;  // 10% remise
+            case 4: return 0.80;  // 20% remise
+            case 5: return 0.75;  // 25% remise
+            default: return 1.0;  // Pas de remise
+        }
     }
 }
