@@ -99,4 +99,22 @@ public class PriceCalculatorTest {
         // Then
         assertEquals(160.0, price); // 4 * 50 * 0.80 = 160
     }
+
+    @Test
+    public void fiveDifferentBooks_shouldCost187point5() {
+        // Given
+        ShoppingBasket basket = new ShoppingBasket();
+        basket.add(Book.CLEAN_CODE);
+        basket.add(Book.THE_CLEAN_CODER);
+        basket.add(Book.CLEAN_ARCHITECTURE);
+        basket.add(Book.TEST_DRIVEN_DEVELOPMENT);
+        basket.add(Book.WORKING_EFFECTIVELY_WITH_LEGACY_CODE);
+        PriceCalculator calculator = new PriceCalculator();
+
+        // When
+        double price = calculator.calculate(basket);
+
+        // Then
+        assertEquals(187.5, price); // 5 * 50 * 0.75 = 187.5
+    }
 }

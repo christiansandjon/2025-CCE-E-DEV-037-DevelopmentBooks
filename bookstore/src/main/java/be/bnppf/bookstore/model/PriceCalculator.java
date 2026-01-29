@@ -21,6 +21,11 @@ public class PriceCalculator {
             return 3 * 50.0 * 0.90;
         }
 
+        // Si 4 livres différents, 20% de remise
+        if (uniqueBooks == 4 && totalBooks == 4) {
+            return 4 * 50.0 * 0.80;
+        }
+
         // Par défaut, pas de remise
         return totalBooks * 50.0;
     }
