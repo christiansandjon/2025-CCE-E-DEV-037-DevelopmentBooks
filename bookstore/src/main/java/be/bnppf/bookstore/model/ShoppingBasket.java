@@ -1,9 +1,6 @@
 package be.bnppf.bookstore.model;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class ShoppingBasket {
     
@@ -28,5 +25,13 @@ public class ShoppingBasket {
     public int countUniqueBooks() {
         Set<Book> uniqueBooks = new HashSet<>(books);
         return uniqueBooks.size();
+    }
+
+    public Map<Book, Integer> getBookCounts() {
+        Map<Book, Integer> counts = new HashMap<>();
+        for (Book book : books) {
+            counts.put(book, counts.getOrDefault(book, 0) + 1);
+        }
+        return counts;
     }
 }
