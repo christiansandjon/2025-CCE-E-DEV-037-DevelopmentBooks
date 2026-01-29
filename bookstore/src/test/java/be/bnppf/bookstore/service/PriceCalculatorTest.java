@@ -1,24 +1,30 @@
 package be.bnppf.bookstore.service;
 
 import be.bnppf.bookstore.model.Book;
-import be.bnppf.bookstore.model.PriceCalculator;
 import be.bnppf.bookstore.model.ShoppingBasket;
+import be.bnppf.bookstore.service.impl.PriceCalculatorImpl;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PriceCalculatorTest {
 
+    private PriceCalculator calculator;
+
+    @BeforeEach
+    public void setUp() {
+        calculator = new PriceCalculatorImpl();
+    }
+
     @Test
     public void emptyBasket_shouldCostZero() {
         // Given
         ShoppingBasket basket = new ShoppingBasket();
-        PriceCalculator calculator = new PriceCalculator();
-        
+
         // When
         double price = calculator.calculate(basket);
-        
+
         // Then
         assertEquals(0.0, price);
     }
@@ -28,7 +34,6 @@ public class PriceCalculatorTest {
         // Given
         ShoppingBasket basket = new ShoppingBasket();
         basket.add(Book.CLEAN_CODE);
-        PriceCalculator calculator = new PriceCalculator();
 
         // When
         double price = calculator.calculate(basket);
@@ -43,7 +48,6 @@ public class PriceCalculatorTest {
         ShoppingBasket basket = new ShoppingBasket();
         basket.add(Book.CLEAN_CODE);
         basket.add(Book.CLEAN_CODE);
-        PriceCalculator calculator = new PriceCalculator();
 
         // When
         double price = calculator.calculate(basket);
@@ -58,7 +62,6 @@ public class PriceCalculatorTest {
         ShoppingBasket basket = new ShoppingBasket();
         basket.add(Book.CLEAN_CODE);
         basket.add(Book.THE_CLEAN_CODER);
-        PriceCalculator calculator = new PriceCalculator();
 
         // When
         double price = calculator.calculate(basket);
@@ -74,7 +77,6 @@ public class PriceCalculatorTest {
         basket.add(Book.CLEAN_CODE);
         basket.add(Book.THE_CLEAN_CODER);
         basket.add(Book.CLEAN_ARCHITECTURE);
-        PriceCalculator calculator = new PriceCalculator();
 
         // When
         double price = calculator.calculate(basket);
@@ -91,7 +93,6 @@ public class PriceCalculatorTest {
         basket.add(Book.THE_CLEAN_CODER);
         basket.add(Book.CLEAN_ARCHITECTURE);
         basket.add(Book.TEST_DRIVEN_DEVELOPMENT);
-        PriceCalculator calculator = new PriceCalculator();
 
         // When
         double price = calculator.calculate(basket);
@@ -109,7 +110,6 @@ public class PriceCalculatorTest {
         basket.add(Book.CLEAN_ARCHITECTURE);
         basket.add(Book.TEST_DRIVEN_DEVELOPMENT);
         basket.add(Book.WORKING_EFFECTIVELY_WITH_LEGACY_CODE);
-        PriceCalculator calculator = new PriceCalculator();
 
         // When
         double price = calculator.calculate(basket);
@@ -125,14 +125,13 @@ public class PriceCalculatorTest {
         basket.add(Book.CLEAN_CODE);
         basket.add(Book.CLEAN_CODE);
         basket.add(Book.THE_CLEAN_CODER);
-        PriceCalculator calculator = new PriceCalculator();
 
         // When
         double price = calculator.calculate(basket);
 
         // Then
-        // Groupe de 2 différents: 95
-        // 1 livre seul: 50
+        // Group of 2 different: 95
+        // 1 single book: 50
         // Total: 145
         assertEquals(145.0, price);
     }
@@ -154,7 +153,6 @@ public class PriceCalculatorTest {
         basket.add(Book.TEST_DRIVEN_DEVELOPMENT);
         // 1 copy Legacy Code
         basket.add(Book.WORKING_EFFECTIVELY_WITH_LEGACY_CODE);
-        PriceCalculator calculator = new PriceCalculator();
 
         // When
         double price = calculator.calculate(basket);
