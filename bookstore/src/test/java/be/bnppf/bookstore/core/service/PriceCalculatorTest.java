@@ -1,8 +1,8 @@
-package be.bnppf.bookstore.service;
+package be.bnppf.bookstore.core.service;
 
-import be.bnppf.bookstore.model.Book;
-import be.bnppf.bookstore.model.ShoppingBasket;
-import be.bnppf.bookstore.service.impl.PriceCalculatorImpl;
+import be.bnppf.bookstore.core.model.Book;
+import be.bnppf.bookstore.core.model.ShoppingBasket;
+import be.bnppf.bookstore.core.service.impl.PriceCalculatorImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

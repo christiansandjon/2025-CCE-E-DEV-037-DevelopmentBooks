@@ -1,4 +1,4 @@
-package be.bnppf.bookstore.model;
+package be.bnppf.bookstore.core.model;
 
 import java.util.*;
 

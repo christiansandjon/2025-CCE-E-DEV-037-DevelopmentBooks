@@ -1,6 +1,6 @@
-package be.bnppf.bookstore.service;
+package be.bnppf.bookstore.core.service;
 
-import be.bnppf.bookstore.model.ShoppingBasket;
+import be.bnppf.bookstore.core.model.ShoppingBasket;
 
 /**
  * Service for calculating the price of a shopping basket with applicable discounts.

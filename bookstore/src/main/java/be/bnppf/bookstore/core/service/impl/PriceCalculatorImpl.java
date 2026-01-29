@@ -1,8 +1,8 @@
-package be.bnppf.bookstore.service.impl;
+package be.bnppf.bookstore.core.service.impl;
 
-import be.bnppf.bookstore.model.Book;
-import be.bnppf.bookstore.model.ShoppingBasket;
-import be.bnppf.bookstore.service.PriceCalculator;
+import be.bnppf.bookstore.core.model.Book;
+import be.bnppf.bookstore.core.model.ShoppingBasket;
+import be.bnppf.bookstore.core.service.PriceCalculator;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
